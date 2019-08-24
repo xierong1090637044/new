@@ -1,0 +1,43 @@
+<!--miniprogram/custom-tab-bar/index.wxml-->
+<!--加好点击-->
+<cover-view wx:if="{{add_click}}" class='add_select'>
+  <cover-view class='display_flex'>
+    <cover-view style="margin-bottom:30rpx;font-size:26rpx;">选择你喜爱的模式，约起GO！</cover-view>
+    <cover-view class='frist_content'>
+
+      <cover-view class='three' style="flex-wrap: wrap;">
+        <navigator class='three_item' hover-class='none' wx:for="{{index_tabs}}" wx:key="{{index}}" url="{{item.url}}">
+          <cover-view>
+            <cover-image src='{{item.icon}}' class='three_icon'></cover-image>
+          </cover-view>
+          <cover-view class='three_noticetext'>{{item.desc}}</cover-view>
+        </navigator>
+      </cover-view>
+
+    </cover-view>
+
+    <cover-view bindtap='hidden_select'>
+      <cover-image src='/images/pop_btn_sheet_shut.png' class='tabar_icon1'></cover-image>
+    </cover-view>
+
+  </cover-view>
+
+</cover-view>
+
+
+<cover-view class="tab-bar" wx:if="{{selected != 7}}">
+  <cover-view class="tab-bar-border"></cover-view>
+  <cover-view wx:for="{{list}}" wx:key="index" class="tab-bar-item">
+    <cover-view wx:if="{{index == 2}}" bindtap='choose_add'>
+      <cover-image src="{{selected === index ? item.selectedIconPath : item.iconPath}}" class='centerImg'></cover-image>
+    </cover-view>
+    <cover-view wx:else bindtap="switchTab" data-path="{{item.pagePath}}" data-index="{{index}}" style="width:100%">
+      <cover-image src="{{selected === index ? item.selectedIconPath : item.iconPath}}" style="margin:0 auto"></cover-image>
+      <cover-view style="color: {{selected === index ? selectedColor : color}}">{{item.text}}</cover-view>
+
+      <cover-view class="badge_number" wx:if="{{item.total}}">{{item.total}}</cover-view>
+    </cover-view>
+
+  </cover-view>
+
+</cover-view>
